@@ -5,11 +5,18 @@ require('dotenv').config({ path: 'variables.env' });
 
 // Connect to our Database and handle an bad connections
 var uristring = process.env.DATABASE
-mongoose.connect(uristring);
-mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
-mongoose.connection.on('error', (err) => {
-  console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
+mongoose.connect(uristring, function (err, res) {
+  if (err) {
+    console.log('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log('Succeeded connected to: ' + uristring);
+  }
 });
+// mongoose.connect(uristring);
+// mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
+// mongoose.connection.on('error', (err) => {
+//   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
+// });
 
 // READY?! Let's go!
 
