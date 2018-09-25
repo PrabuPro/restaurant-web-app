@@ -6,14 +6,14 @@ const mongoose = require('mongoose');
 require('dotenv').config({ path: 'variables.env' });
 
 // Connect to our Database and handle an bad connections
-const db = process.env.DATABASE.toString();
-mongoose.connect(db);
+const db = toString(process.env.DATABASE);
+mongoose.connect(db); 
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 mongoose.connection.on('error', (err) => {
   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
 
-// READY?! Let's go!
+// READY?! Let's g
 
 
 //import all our models
